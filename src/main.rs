@@ -16,35 +16,18 @@
 extern crate pancurses;
 
 use std::collections::HashMap;
-use std::io::prelude::*;
+use std::time::Duration;
+use std::thread::sleep;
 
 use pancurses::*;
 
+// Character representing a cell that is "on" or "alive".
 const ON: char = '#';
+// Character representing a cell that is "off" or "dead".
 const OFF: char = '.';
+// The time to sleep between generations, in seconds.
+const SLEEP: i32 = 1;
 
-#[allow(dead_code)]
 fn main() {
-    // Initialize the console stuff.
-    let screen = initscr();
-    noecho();
-    curs_set(0);
-    start_color();
-
-    init_pair(1, COLOR_GREEN, COLOR_BLACK);
-
-    screen.attrset(COLOR_PAIR(1));
-
-    let (screen_y, screen_x) = screen.get_max_yx();
-
-    for y in 0..screen_y {
-        for x in 0..screen_x {
-            // Painting logic goes here.
-        }
-    }
-    screen.refresh();
-
-    screen.getch();
-
-    endwin();
+    // ...
 }
