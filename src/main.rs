@@ -20,6 +20,9 @@ use std::io::prelude::*;
 
 use pancurses::*;
 
+const ON: char = '#';
+const OFF: char = '.';
+
 #[allow(dead_code)]
 fn main() {
     // Initialize the console stuff.
@@ -36,7 +39,7 @@ fn main() {
 
     for y in 0..screen_y {
         for x in 0..screen_x {
-            screen.mvaddch(y, x, '.');
+            // Painting logic goes here.
         }
     }
     screen.refresh();
