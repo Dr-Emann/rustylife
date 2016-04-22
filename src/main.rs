@@ -20,12 +20,17 @@ use std::io::prelude::*;
 
 use pancurses::*;
 
+#[allow(dead_code)]
 fn main() {
     // Initialize the console stuff.
     let screen = initscr();
     noecho();
     curs_set(0);
     start_color();
+
+    init_pair(1, COLOR_GREEN, COLOR_BLACK);
+
+    screen.attrset(COLOR_PAIR(1));
 
     let (screen_y, screen_x) = screen.get_max_yx();
 
@@ -34,6 +39,7 @@ fn main() {
             screen.mvaddch(y, x, 'x');
         }
     }
+    screen.refresh();
 
     screen.getch();
 
