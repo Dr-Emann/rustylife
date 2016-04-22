@@ -21,4 +21,21 @@ use std::io::prelude::*;
 use pancurses::*;
 
 fn main() {
+    // Initialize the console stuff.
+    let screen = initscr();
+    noecho();
+    curs_set(0);
+    start_color();
+
+    let (screen_y, screen_x) = screen.get_max_yx();
+
+    for y in 0..screen_y {
+        for x in 0..screen_x {
+            screen.mvaddch(y, x, 'x');
+        }
+    }
+
+    screen.getch();
+
+    endwin();
 }
