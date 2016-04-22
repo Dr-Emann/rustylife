@@ -36,7 +36,7 @@ fn main() {
 
     for y in 0..screen_y {
         for x in 0..screen_x {
-            screen.mvaddch(y, x, 'x');
+            screen.mvaddch(y, x, '.');
         }
     }
     screen.refresh();
