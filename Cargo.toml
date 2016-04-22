@@ -4,4 +4,4 @@ version = "0.1.0"
 authors = ["Morgan Kalvin Nrykkxyyyn <mknrykkxyyyn@gmail.com>"]
 
 [dependencies]
-term = "0.4" 
+pancurses = "0.3"
