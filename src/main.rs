@@ -27,7 +27,8 @@ const LIVE: char = '#';
 const DEAD: char = '.';
 
 fn main() {
-    screen = initscr();
+    let map = HashMap::new();
+    let screen = initscr();
     
     noecho();
     curs_set(0);
@@ -43,10 +44,8 @@ fn main() {
                 // ...
             }
         }
-        sleep(1);
+        sleep(Duration::new(1, 0));
     }
 
     endwin();
 }
-
-
