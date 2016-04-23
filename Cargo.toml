@@ -5,3 +5,4 @@ authors = ["Morgan Kalvin Nrykkxyyyn <mknrykkxyyyn@gmail.com>"]
 
 [dependencies]
 pancurses = "0.3"
+rand = "0.3"
