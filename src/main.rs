@@ -29,40 +29,5 @@ const LIVE: char = '#';
 const DEAD: char = '.';
 
 fn main() {
-    let mut map = HashMap::new();
-    let screen = initscr();
-    let (screen_y, screen_x) = screen.get_max_yx();
-    let mut rng = rand::thread_rng();
-
-    for y in 0..screen_y {
-        for x in 0..screen_x {
-            let coordinates = (x, y);
-            let cell: char;
-
-            if rng.gen() {
-                cell = LIVE;
-            } else {
-                cell = DEAD;
-            }
-            map.insert(coordinates, cell);
-        }
-    }
-    
-    noecho();
-    curs_set(0);
-    start_color();
-    init_pair(1, COLOR_GREEN, COLOR_BLACK);
-    screen.attron(COLOR_PAIR(1));
-
-    loop {
-        for y in 0..screen_y {
-            for x in 0..screen_x {
-                screen.mvaddch(y, x, *map.get(&(x, y)).unwrap());
-            }
-        }
-        screen.refresh();
-        sleep(Duration::new(1, 0));
-    }
-
-    endwin();
+    // ...
 }
