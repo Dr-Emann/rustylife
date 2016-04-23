@@ -29,10 +29,10 @@ const LIVE: char = '#';
 const DEAD: char = '.';
 
 fn main() {
-    let map = HashMap::new();
+    let mut map = HashMap::new();
     let screen = initscr();
     let (screen_y, screen_x) = screen.get_max_yx();
-    let rng = rand::thread_rng();
+    let mut rng = rand::thread_rng();
 
     for y in 0..screen_y {
         for x in 0..screen_x {
@@ -52,14 +52,15 @@ fn main() {
     curs_set(0);
     start_color();
     init_pair(1, COLOR_GREEN, COLOR_BLACK);
-    screen.attr_on(COLOR_PAIR(1));
+    screen.attron(COLOR_PAIR(1));
 
     loop {
         for y in 0..screen_y {
             for x in 0..screen_x {
-                screen.mvaddch(y, x, *map.get((x, y)).unwrap());
+                screen.mvaddch(y, x, *map.get(&(x, y)).unwrap());
             }
         }
+        screen.refresh();
         sleep(Duration::new(1, 0));
     }
 
