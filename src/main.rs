@@ -22,12 +22,31 @@ use std::thread::sleep;
 use pancurses::*;
 
 // Character representing a cell that is "on" or "alive".
-const ON: char = '#';
+const LIVE: char = '#';
 // Character representing a cell that is "off" or "dead".
-const OFF: char = '.';
-// The time to sleep between generations, in seconds.
-const SLEEP: i32 = 1;
+const DEAD: char = '.';
 
 fn main() {
-    // ...
+    screen = initscr();
+    
+    noecho();
+    curs_set(0);
+    start_color();
+    init_pair(1, COLOR_GREEN, COLOR_BLACK);
+
+    let (screen_y, screen_x) = screen.get_max_yx();
+    screen.attr_on(COLOR_PAIR(1));
+
+    loop {
+        for y in 0..screen_y {
+            for x in 0..screen_x {
+                // ...
+            }
+        }
+        sleep(1);
+    }
+
+    endwin();
 }
+
+
