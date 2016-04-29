@@ -12,25 +12,3 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
-
-extern crate pancurses;
-
-use std::time::Duration;
-use std::thread::sleep;
-
-use pancurses::*;
-
-use mapop::*;
-
-// Character representing a cell that is "on" or "alive".
-const LIVE: char = '#';
-// Character representing a cell that is "off" or "dead".
-const DEAD: char = '.';
-
-fn main() {
-    // ...
-}
-
-fn update_hashmap(map: HashMap<(i32, i32), bool>) -> HashMap<(i32, i32), bool> {
-    // ...
-}
