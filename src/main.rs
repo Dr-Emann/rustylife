@@ -13,6 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+// TODO: Add argument parsing with argparse.
 extern crate pancurses;
 extern crate rand;
 
@@ -32,10 +33,14 @@ fn main() {
     let screen = pancurses::initscr();
     let mut hash_map = mapops::create_map();
 
+    // Not sure if these will work.
     pancurses::noecho();
     pancurses::startcolor();
     pancurses::init_pair(1, pancurses::COLOR_RED, pancurses::COLOR_BLACK);
 
     loop {
+        // TODO: Allow user to exit with 'q', and do other keyboard stuff.
+        mapops::draw_screen(&screen, &map);
+        map = update_map(map);
     }
 }
