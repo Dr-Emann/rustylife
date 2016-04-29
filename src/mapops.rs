@@ -22,11 +22,12 @@ pub fn update_map(map: HashMap<(i32, i32), bool>) -> HashMap<(i32, i32), bool> {
     // ...
 }
 
+// Rng is used in here.
 pub fn create_map() -> HashMap<(i32, i32), bool>) {
     // ...
 }
 
 // Not sure if this is going to work.
-pub fn draw_screen(screen: &pancurses::Window, map: HashMap<(i32, i32), bool>) {
+pub fn draw_screen(screen: &pancurses::Window, map: &HashMap<(i32, i32), bool>) {
     // ...
 }
