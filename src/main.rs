@@ -36,11 +36,11 @@ fn main() {
     // Not sure if these will work.
     pancurses::noecho();
     pancurses::startcolor();
-    pancurses::init_pair(1, pancurses::COLOR_RED, pancurses::COLOR_BLACK);
+    pancurses::init_pair(1, pancurses::COLOR_GREEN, pancurses::COLOR_BLACK);
 
     loop {
         // TODO: Allow user to exit with 'q', and do other keyboard stuff.
         mapops::draw_screen(&screen, &map);
-        map = update_map(map);
+        map = mapops::update_map(map);
     }
 }
