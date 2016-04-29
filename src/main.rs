@@ -31,3 +31,7 @@ const DEAD: char = '.';
 fn main() {
     // ...
 }
+
+fn update_hashmap(map: HashMap<(i32, i32), bool>) -> HashMap<(i32, i32), bool> {
+    // ...
+}
