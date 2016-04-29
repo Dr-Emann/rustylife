@@ -18,9 +18,9 @@ extern crate pancurses;
 use std::time::Duration;
 use std::thread::sleep;
 
-use pancurses::*;
+use pancurses;
 
-use mapops::*;
+use mapops;
 
 // Character representing a cell that is "on" or "alive".
 const LIVE: char = '#';
@@ -28,5 +28,14 @@ const LIVE: char = '#';
 const DEAD: char = '.';
 
 fn main() {
-    // ...
+    let screen = pancurses::initscr();
+    let mut hash_map = mapops::create_map();
+
+    pancurses::noecho();
+    pancurses::startcolor();
+    pancurses::init_pair(1, pancurses::COLOR_RED, pancurses::COLOR_BLACK);
+
+    loop {
+    
+    }
 }
