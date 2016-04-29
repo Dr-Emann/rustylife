@@ -12,3 +12,17 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+extern crate rand;
+
+use std::collections::HashMap;
+
+use rand::Rng;
+
+pub fn update_map(map: HashMap<(i32, i32), bool>) -> HashMap<(i32, i32), bool> {
+    // ...
+}
+
+pub fn create_map() -> HashMap<(i32, i32), bool>) {
+    // ...
+}
