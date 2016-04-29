@@ -13,9 +13,9 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-
 use std::collections::HashMap;
 
+use pancurses;
 use rand::Rng;
 
 pub fn update_map(map: HashMap<(i32, i32), bool>) -> HashMap<(i32, i32), bool> {
@@ -26,4 +26,7 @@ pub fn create_map() -> HashMap<(i32, i32), bool>) {
     // ...
 }
 
-pub fn draw_screen(
+// Not sure if this is going to work.
+pub fn draw_screen(screen: &pancurses::Window, map: HashMap<(i32, i32), bool>) {
+    // ...
+}
