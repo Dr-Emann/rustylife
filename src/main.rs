@@ -20,7 +20,7 @@ use std::thread::sleep;
 
 use pancurses::*;
 
-use mapop::*;
+use mapops::*;
 
 // Character representing a cell that is "on" or "alive".
 const LIVE: char = '#';
