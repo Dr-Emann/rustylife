@@ -18,6 +18,10 @@ use std::collections::HashMap;
 use pancurses;
 use rand::Rng;
 
+// update_map and draw_screen need to be able to catch errors
+// in such a way that curses will exit gracefully if there's
+// an error.
+
 pub fn update_map(map: HashMap<(i32, i32), bool>) -> HashMap<(i32, i32), bool> {
     // ...
 }

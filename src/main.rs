@@ -43,4 +43,6 @@ fn main() {
         mapops::draw_screen(&screen, &map);
         map = mapops::update_map(map);
     }
+
+    pancurses::endwin();
 }
