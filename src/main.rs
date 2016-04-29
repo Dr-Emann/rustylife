@@ -14,6 +14,7 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 extern crate pancurses;
+extern crate rand;
 
 use std::time::Duration;
 use std::thread::sleep;
@@ -36,6 +37,5 @@ fn main() {
     pancurses::init_pair(1, pancurses::COLOR_RED, pancurses::COLOR_BLACK);
 
     loop {
-    
     }
 }
