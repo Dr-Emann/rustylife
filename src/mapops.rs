@@ -18,14 +18,11 @@ use std::collections::HashMap;
 use pancurses;
 use rand::Rng;
 
-// Character representing a cell that is "on" or "alive".
 const LIVE: char = '#';
-// Character representing a cell that is "off" or "dead".
 const DEAD: char = '.';
 
 // update_map and draw_screen need to be able to catch errors
-// in such a way that curses will exit gracefully if there's
-// an error.
+// in such a way that curses will exit gracefully.
 
 pub fn update_map(map: HashMap<(i32, i32), bool>) -> HashMap<(i32, i32), bool> {
     // ...
