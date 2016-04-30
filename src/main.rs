@@ -17,10 +17,10 @@
 extern crate pancurses;
 extern crate rand;
 
-extern crate mapops;
-
 use std::time::Duration;
 use std::thread::sleep;
+
+pub mod mapops;
 
 // Character representing a cell that is "on" or "alive".
 const LIVE: char = '#';
@@ -33,7 +33,7 @@ fn main() {
 
     // Not sure if these will work.
     pancurses::noecho();
-    pancurses::startcolor();
+    pancurses::start_color();
     pancurses::init_pair(1, pancurses::COLOR_GREEN, pancurses::COLOR_BLACK);
 
     loop {

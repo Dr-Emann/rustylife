@@ -27,7 +27,7 @@ pub fn update_map(map: HashMap<(i32, i32), bool>) -> HashMap<(i32, i32), bool> {
 }
 
 // Rng is used in here.
-pub fn create_map() -> HashMap<(i32, i32), bool>) {
+pub fn create_map() -> HashMap<(i32, i32), bool> {
     // ...
 }
 
