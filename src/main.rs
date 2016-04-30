@@ -20,7 +20,7 @@ extern crate rand;
 use std::time::Duration;
 use std::thread::sleep;
 
-pub mod mapops;
+mod mapops;
 
 // Character representing a cell that is "on" or "alive".
 const LIVE: char = '#';
