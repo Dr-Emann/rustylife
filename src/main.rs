@@ -17,12 +17,10 @@
 extern crate pancurses;
 extern crate rand;
 
+extern crate mapops;
+
 use std::time::Duration;
 use std::thread::sleep;
-
-use pancurses;
-
-use mapops;
 
 // Character representing a cell that is "on" or "alive".
 const LIVE: char = '#';
@@ -40,8 +38,8 @@ fn main() {
 
     loop {
         // TODO: Allow user to exit with 'q', and do other keyboard stuff.
-        mapops::draw_screen(&screen, &map);
-        map = mapops::update_map(map);
+        mapops::draw_screen(&screen, &hash_map);
+        hash_map = mapops::update_map(hash_map);
     }
 
     pancurses::endwin();
