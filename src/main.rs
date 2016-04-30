@@ -22,11 +22,6 @@ use std::thread::sleep;
 
 mod mapops;
 
-// Character representing a cell that is "on" or "alive".
-const LIVE: char = '#';
-// Character representing a cell that is "off" or "dead".
-const DEAD: char = '.';
-
 fn main() {
     let screen = pancurses::initscr();
     let mut hash_map = mapops::create_map();
