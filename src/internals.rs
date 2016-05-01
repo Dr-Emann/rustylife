@@ -71,8 +71,6 @@ fn is_alive_or_dead(x: i32, y: i32, map: &HashMap<(i32, i32), bool>) -> bool {
             (x-1, y+1),
     ];
 
-    let cell_status = *(map.get(&(x, y)).unwrap());
-
     let mut counter: u8 = 0;
 
     for coordinate in &neighbors {
@@ -86,7 +84,7 @@ fn is_alive_or_dead(x: i32, y: i32, map: &HashMap<(i32, i32), bool>) -> bool {
         }
     }
 
-    if cell_status {
+    if *(map.get(&(x, y)).unwrap()) {
         return counter > 3 || counter < 2;
     } else {
         return counter == 3;
