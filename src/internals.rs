@@ -36,7 +36,7 @@ pub fn create_map() -> HashMap<(i32, i32), bool> {
 
     for x in 0..XLEN {
         for y in 0..YLEN {
-            map.insert((x, y), rng.gen::<bool>());
+            map.insert((x, y), rng.gen());
         }
     }
 
