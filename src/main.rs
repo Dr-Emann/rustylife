@@ -30,6 +30,7 @@ fn main() {
     pancurses::noecho();
     pancurses::start_color();
     pancurses::init_pair(1, pancurses::COLOR_GREEN, pancurses::COLOR_BLACK);
+    pancurses::curs_set(0);
     screen.attron(pancurses::COLOR_PAIR(1));
 
     loop {
