@@ -27,7 +27,9 @@ const YLEN: i32 = 50;
 // in such a way that curses will exit gracefully.
 
 pub fn update_map(map: HashMap<(i32, i32), bool>) -> HashMap<(i32, i32), bool> {
-    // ...
+    let mut new_map: HashMap<(i32, i32), bool> = HashMap::new();
+
+    
 }
 
 pub fn create_map() -> HashMap<(i32, i32), bool> {
