@@ -98,7 +98,7 @@ fn is_alive_or_dead(x: i32, y: i32, map: &HashMap<(i32, i32), bool>) -> bool {
     }
 
     if *(map.get(&(x, y)).unwrap()) {
-        counter > 3 || counter < 2
+        !(counter > 3 || counter < 2)
     } else {
         counter == 3
     }

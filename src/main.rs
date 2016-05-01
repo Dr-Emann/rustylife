@@ -37,6 +37,7 @@ fn main() {
         // TODO: Allow user to exit with 'q', and do other keyboard stuff.
         internals::draw_screen(&screen, &hash_map);
         hash_map = internals::update_map(hash_map);
+        sleep(Duration::new(0, 5));
     }
 
     pancurses::endwin();
