@@ -67,9 +67,9 @@ pub fn draw_screen(screen: &pancurses::Window, map: &HashMap<(i32, i32), bool>) 
                 }
             };
             screen.mvaddch(y, x, cell);
-            screen.refresh();
         }
     }
+    screen.refresh();
 }
 
 fn is_alive_or_dead(x: i32, y: i32, map: &HashMap<(i32, i32), bool>) -> bool {
