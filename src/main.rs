@@ -20,11 +20,11 @@ extern crate rand;
 use std::time::Duration;
 use std::thread::sleep;
 
-mod mapops;
+mod internals;
 
 fn main() {
     let screen = pancurses::initscr();
-    let mut hash_map = mapops::create_map();
+    let mut hash_map = internals::create_map();
 
     // Not sure if these will work.
     pancurses::noecho();
@@ -33,8 +33,8 @@ fn main() {
 
     loop {
         // TODO: Allow user to exit with 'q', and do other keyboard stuff.
-        mapops::draw_screen(&screen, &hash_map);
-        hash_map = mapops::update_map(hash_map);
+        internals::draw_screen(&screen, &hash_map);
+        hash_map = internals::update_map(hash_map);
     }
 
     pancurses::endwin();
