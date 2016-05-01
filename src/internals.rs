@@ -58,3 +58,7 @@ pub fn create_map() -> HashMap<(i32, i32), bool> {
 pub fn draw_screen(screen: &pancurses::Window, map: &HashMap<(i32, i32), bool>) {
     // ...
 }
+
+fn is_alive_or_dead(x: i32, y: i32, map: HashMap<(i32, i32), bool>) -> bool {
+    // ...
+}
