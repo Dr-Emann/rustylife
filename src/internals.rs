@@ -60,5 +60,17 @@ pub fn draw_screen(screen: &pancurses::Window, map: &HashMap<(i32, i32), bool>) 
 }
 
 fn is_alive_or_dead(x: i32, y: i32, map: HashMap<(i32, i32), bool>) -> bool {
-    // ...
+    let neighbors: Vec<i32> = vec![
+            (x, y+1),
+            (x+1, y),
+            (x, y-1),
+            (x-1, y),
+            (x+1, y+1),
+            (x-1, y-1),
+            (x+1, y-1),
+            (x-1, y+1),
+    ];
+
+    for (t_x, t_y) in &neighbors {
+
 }
