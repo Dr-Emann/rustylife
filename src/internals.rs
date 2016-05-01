@@ -23,11 +23,6 @@ const DEAD: char = '.';
 const XLEN: i32 = 100;
 const YLEN: i32 = 50;
 
-// update_map and draw_screen need to be able to catch errors
-// in such a way that curses will exit gracefully.
-//
-// Return an Option or Result, perhaps?
-
 pub fn update_map(map: HashMap<(i32, i32), bool>) -> HashMap<(i32, i32), bool> {
     let mut new_map: HashMap<(i32, i32), bool> = HashMap::new();
 
@@ -54,7 +49,6 @@ pub fn create_map() -> HashMap<(i32, i32), bool> {
     map
 }
 
-// Not sure if this is going to work.
 pub fn draw_screen(screen: &pancurses::Window, map: &HashMap<(i32, i32), bool>) {
     for y in 0..YLEN {
         for x in 0..XLEN {
@@ -100,11 +94,9 @@ fn is_alive_or_dead(x: i32, y: i32, map: &HashMap<(i32, i32), bool>) -> bool {
     let cell_status: bool = *(map.get(&(x, y)).unwrap());
 
     if cell_status {
-        if counter < 2 {
-            return false;
-        } else if counter == 2 || counter == 3 {
+        if counter == 2 || counter == 3 {
             return true;
-        } else if counter > 3 {
+        } else {
             return false;
         }
     } else if counter == 3 {
