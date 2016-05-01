@@ -65,7 +65,7 @@ pub fn draw_screen(screen: &pancurses::Window, map: &HashMap<(i32, i32), bool>) 
                 } else {
                     DEAD
                 }
-            }
+            };
             screen.mvaddch(y, x, cell);
             screen.refresh();
         }
