@@ -59,7 +59,7 @@ pub fn draw_screen(screen: &pancurses::Window, map: &HashMap<(i32, i32), bool>) 
     for y in 0..YLEN {
         for x in 0..XLEN {
             let cell: char = {
-                let tb: bool = *(map.get((x, y)).unwrap());
+                let tb: bool = *(map.get(&(x, y)).unwrap());
                 if tb {
                     LIVE
                 } else {
