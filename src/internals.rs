@@ -34,7 +34,7 @@ pub fn update_map(map: HashMap<(i32, i32), bool>) -> HashMap<(i32, i32), bool> {
     // Create the initial implementation, work on error handling later.
     for x in 0..XLEN {
         for y in 0..YLEN {
-            new_map.insert((x, y), is_alive_or_dead(x, y, map));
+            new_map.insert((x, y), is_alive_or_dead(x, y, &map));
         }
     }
 
@@ -60,7 +60,7 @@ pub fn draw_screen(screen: &pancurses::Window, map: &HashMap<(i32, i32), bool>) 
 }
 
 fn is_alive_or_dead(x: i32, y: i32, map: &HashMap<(i32, i32), bool>) -> bool {
-    let neighbors: Vec<i32> = vec![
+    let neighbors: Vec<(i32, i32)> = vec![
             (x, y+1),
             (x+1, y),
             (x, y-1),
@@ -71,8 +71,24 @@ fn is_alive_or_dead(x: i32, y: i32, map: &HashMap<(i32, i32), bool>) -> bool {
             (x-1, y+1),
     ];
 
+    let cell_status = *(map.get(&(x, y)).unwrap());
+
     let mut counter: u8 = 0;
 
-    for (t_x, t_y) in &neighbors {
-        if map
+    for coordinate in &neighbors {
+        match map.get(&coordinate) {
+            Some(b) => {
+                if *b {
+                    counter += 1;
+                }
+            },
+            None => continue,
+        }
+    }
+
+    if cell_status {
+        return counter > 3 || counter < 2;
+    } else {
+        return counter == 3;
+    }
 }
