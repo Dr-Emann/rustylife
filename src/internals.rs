@@ -20,6 +20,8 @@ use rand::Rng;
 
 const LIVE: char = '#';
 const DEAD: char = '.';
+const XLEN: i32 = 100;
+const YLEN: i32 = 50;
 
 // update_map and draw_screen need to be able to catch errors
 // in such a way that curses will exit gracefully.
@@ -28,9 +30,17 @@ pub fn update_map(map: HashMap<(i32, i32), bool>) -> HashMap<(i32, i32), bool> {
     // ...
 }
 
-// Rng is used in here.
 pub fn create_map() -> HashMap<(i32, i32), bool> {
-    // ...
+    let mut map: HashMap<(i32, i32), bool> = HashMap::new();
+    let mut rng = rand::thread_rng();
+
+    for x in 0..XLEN {
+        for y in 0..YLEN {
+            map.insert((x, y), rng.gen());
+        }
+    }
+
+    map
 }
 
 // Not sure if this is going to work.
