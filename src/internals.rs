@@ -25,11 +25,20 @@ const YLEN: i32 = 50;
 
 // update_map and draw_screen need to be able to catch errors
 // in such a way that curses will exit gracefully.
+//
+// Return an Option or Result, perhaps?
 
 pub fn update_map(map: HashMap<(i32, i32), bool>) -> HashMap<(i32, i32), bool> {
     let mut new_map: HashMap<(i32, i32), bool> = HashMap::new();
 
-    
+    // Create the initial implementation, work on error handling later.
+    for x in 0..XLEN {
+        for y in 0..YLEN {
+            new_map.insert((x, y), is_alive_or_dead(x, y, map));
+        }
+    }
+
+    new_map
 }
 
 pub fn create_map() -> HashMap<(i32, i32), bool> {
