@@ -56,7 +56,9 @@ pub fn create_map() -> HashMap<(i32, i32), bool> {
 
 // Not sure if this is going to work.
 pub fn draw_screen(screen: &pancurses::Window, map: &HashMap<(i32, i32), bool>) {
-    // ...
+    for y in 0..YLEN {
+        for x in 0..XLEN {
+            let cell = map
 }
 
 fn is_alive_or_dead(x: i32, y: i32, map: &HashMap<(i32, i32), bool>) -> bool {
@@ -85,8 +87,8 @@ fn is_alive_or_dead(x: i32, y: i32, map: &HashMap<(i32, i32), bool>) -> bool {
     }
 
     if *(map.get(&(x, y)).unwrap()) {
-        return counter > 3 || counter < 2;
+        counter > 3 || counter < 2
     } else {
-        return counter == 3;
+        counter == 3
     }
 }
