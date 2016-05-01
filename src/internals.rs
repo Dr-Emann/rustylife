@@ -16,7 +16,7 @@
 use std::collections::HashMap;
 
 use pancurses;
-use rand::Rng;
+use rand::{Rng, thread_rng};
 
 const LIVE: char = '#';
 const DEAD: char = '.';
@@ -32,11 +32,11 @@ pub fn update_map(map: HashMap<(i32, i32), bool>) -> HashMap<(i32, i32), bool> {
 
 pub fn create_map() -> HashMap<(i32, i32), bool> {
     let mut map: HashMap<(i32, i32), bool> = HashMap::new();
-    let mut rng = rand::thread_rng();
+    let mut rng = thread_rng();
 
     for x in 0..XLEN {
         for y in 0..YLEN {
-            map.insert((x, y), rng.gen());
+            map.insert((x, y), rng.gen::<bool>());
         }
     }
 
