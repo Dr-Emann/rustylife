@@ -119,15 +119,13 @@ fn is_alive_or_dead(x: i32, y: i32, map: &HashMap<(i32, i32), bool>) -> bool {
 
     let cell_status: bool = *(map.get(&(x, y)).unwrap());
 
-    if cell_status {
-        if counter == 2 || counter == 3 {
-            return true;
-        } else {
-            return false;
-        }
+    if cell_status && (counter == 2 || counter == 3) {
+        true
+    } else if cell_status {
+        false
     } else if counter == 3 {
-        return true;
+        true
+    } else {
+        false
     }
-
-    false
 }
