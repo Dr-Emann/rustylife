@@ -26,23 +26,17 @@ fn main() {
     let screen = pancurses::initscr();
     let mut hash_map = internals::create_map();
 
-    // Not sure if these will work.
     pancurses::noecho();
     pancurses::start_color();
     pancurses::init_pair(1, pancurses::COLOR_GREEN, pancurses::COLOR_BLACK);
     pancurses::curs_set(0);
     screen.attron(pancurses::COLOR_PAIR(1));
 
-    let mut count: u64 = 0;
-
     loop {
         // TODO: Allow user to exit with 'q', and do other keyboard stuff.
         internals::draw_screen(&screen, &hash_map);
-        screen.mvaddstr(0, 0, &format!("\n\n{}", count));
-        screen.refresh();
         hash_map = internals::update_map(hash_map);
-        count += 1;
-        sleep(Duration::new(0, 5));
+        sleep(Duration::new(0, 250_000_000));
     }
 
     pancurses::endwin();
