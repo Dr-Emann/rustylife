@@ -20,24 +20,59 @@ extern crate rand;
 use std::time::Duration;
 use std::thread::sleep;
 
-mod internals;
+use pancurses::Input;
+
+mod model;
+mod display;
+
+macro_rules! defer {
+    ($e:expr) => {
+        struct Guard;
+        impl Drop for Guard {
+            fn drop(&mut self) {
+                $e;
+            }
+        }
+        let _guard = Guard;
+    }
+}
 
 fn main() {
     let screen = pancurses::initscr();
-    let mut hash_map = internals::create_map(&screen);
+    defer!(pancurses::endwin());
 
     pancurses::noecho();
+    pancurses::cbreak();
     pancurses::start_color();
     pancurses::init_pair(1, pancurses::COLOR_GREEN, pancurses::COLOR_BLACK);
     pancurses::curs_set(0);
+    
+    screen.keypad(true);
+    screen.nodelay(true);
     screen.attron(pancurses::COLOR_PAIR(1));
+    let mut rng = rand::thread_rng();
 
-    loop {
+    let (y, x) = screen.get_max_yx();
+    let mut game = model::GameState::new(x as u32, y as u32);
+    game.randomize(&mut rng);
+
+    'outer: loop {
         // TODO: Allow user to exit with 'q', and do other keyboard stuff.
-        internals::draw_screen(&screen, &hash_map);
-        hash_map = internals::update_map(&screen, hash_map);
+        while let Some(ch) = screen.getch() {
+            match ch {
+                Input::KeyResize => {
+                    pancurses::resize_term(0, 0);
+                    let (y, x) = screen.get_max_yx();
+                    game.resize(x as u32, y as u32);
+                }
+                Input::Character('q') => {
+                    break 'outer;
+                }
+                _ => {}
+            }
+        }
+        display::show_game(&screen, &game);
+        game.update();
         sleep(Duration::new(0, 250_000_000));
     }
-
-    pancurses::endwin();
 }
