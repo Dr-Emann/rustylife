@@ -38,7 +38,8 @@ fn main() {
     loop {
         // TODO: Allow user to exit with 'q', and do other keyboard stuff.
         internals::draw_screen(&screen, &hash_map);
-        screen.addstr(&format!("\n\n{}", count));
+        screen.mvaddstr(0, 0, &format!("\n\n{}", count));
+        screen.refresh();
         hash_map = internals::update_map(hash_map);
         count += 1;
         sleep(Duration::new(0, 5));
