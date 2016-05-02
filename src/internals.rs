@@ -43,7 +43,7 @@ pub fn create_map(screen: &pancurses::Window) -> HashMap<(i32, i32), bool> {
 
     for x in 0..xlen {
         for y in 0..ylen {
-            map.insert((x, y), rand::random::<u64>() % 7 == 0);
+            map.insert((x, y), init_state());
         }
     }
 
@@ -130,4 +130,8 @@ fn is_alive_or_dead(x: i32, y: i32, map: &HashMap<(i32, i32), bool>, xlen: i32, 
     } else {
         false
     }
+}
+
+fn init_state() -> bool {
+    rand::random::<i32>() % 7 == 0
 }
