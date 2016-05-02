@@ -24,7 +24,7 @@ mod internals;
 
 fn main() {
     let screen = pancurses::initscr();
-    let mut hash_map = internals::create_map();
+    let mut hash_map = internals::create_map(&screen);
 
     pancurses::noecho();
     pancurses::start_color();
@@ -35,7 +35,7 @@ fn main() {
     loop {
         // TODO: Allow user to exit with 'q', and do other keyboard stuff.
         internals::draw_screen(&screen, &hash_map);
-        hash_map = internals::update_map(hash_map);
+        hash_map = internals::update_map(&screen, hash_map);
         sleep(Duration::new(0, 250_000_000));
     }
 

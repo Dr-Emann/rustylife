@@ -17,32 +17,36 @@ use std::collections::HashMap;
 
 use pancurses;
 use rand::{Rng, thread_rng};
+use rand;
 
 const LIVE: char = '#';
 const DEAD: char = ' ';
-const XLEN: i32 = 100;
-const YLEN: i32 = 50;
+//const XLEN: i32 = 100;
+//const YLEN: i32 = 50;
 
-pub fn update_map(map: HashMap<(i32, i32), bool>) -> HashMap<(i32, i32), bool> {
+pub fn update_map(screen: &pancurses::Window, map: HashMap<(i32, i32), bool>) -> HashMap<(i32, i32), bool> {
     let mut new_map: HashMap<(i32, i32), bool> = HashMap::new();
+    let (ylen, xlen) = screen.get_max_yx();
 
     // Create the initial implementation, work on error handling later.
-    for x in 0..XLEN {
-        for y in 0..YLEN {
-            new_map.insert((x, y), is_alive_or_dead(x, y, &map));
+    for x in 0..xlen {
+        for y in 0..ylen {
+            new_map.insert((x, y), is_alive_or_dead(x, y, &map, xlen, ylen));
         }
     }
 
     new_map
 }
 
-pub fn create_map() -> HashMap<(i32, i32), bool> {
+pub fn create_map(screen: &pancurses::Window) -> HashMap<(i32, i32), bool> {
     let mut map: HashMap<(i32, i32), bool> = HashMap::new();
     let mut rng = thread_rng();
+    let (ylen, xlen) = screen.get_max_yx();
 
-    for x in 0..XLEN {
-        for y in 0..YLEN {
-            map.insert((x, y), rng.gen());
+    for x in 0..xlen {
+        for y in 0..ylen {
+            let random_integer: u64 = rand::random();
+            map.insert((x, y), random_integer % 7 == 0);
         }
     }
 
@@ -50,8 +54,9 @@ pub fn create_map() -> HashMap<(i32, i32), bool> {
 }
 
 pub fn draw_screen(screen: &pancurses::Window, map: &HashMap<(i32, i32), bool>) {
-    for y in 0..YLEN {
-        for x in 0..XLEN {
+    let (ylen, xlen) = screen.get_max_yx();
+    for y in 0..ylen {
+        for x in 0..xlen {
             let cell: char = {
                     let tb: bool = *(map.get(&(x, y)).unwrap());
                     if tb {
@@ -66,7 +71,7 @@ pub fn draw_screen(screen: &pancurses::Window, map: &HashMap<(i32, i32), bool>) 
     screen.refresh();
 }
 
-fn is_alive_or_dead(x: i32, y: i32, map: &HashMap<(i32, i32), bool>) -> bool {
+fn is_alive_or_dead(x: i32, y: i32, map: &HashMap<(i32, i32), bool>, xlen: i32, ylen: i32) -> bool {
     let neighbors: Vec<(i32, i32)> = {
             let compars: Vec<(i32, i32)> = vec![
                 (0, 1),
@@ -86,15 +91,15 @@ fn is_alive_or_dead(x: i32, y: i32, map: &HashMap<(i32, i32), bool>) -> bool {
                 let mut j_y = y + t_y;
 
                 if j_x < 0 {
-                    j_x = XLEN-1;
+                    j_x = xlen-1;
                 }
                 if j_y < 0 {
-                    j_y = YLEN-1;
+                    j_y = ylen-1;
                 }
-                if j_x >= XLEN {
+                if j_x >= xlen {
                     j_x = 0;
                 }
-                if j_y >= YLEN {
+                if j_y >= ylen {
                     j_y = 0;
                 }
 
