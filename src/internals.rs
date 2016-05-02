@@ -53,12 +53,12 @@ pub fn draw_screen(screen: &pancurses::Window, map: &HashMap<(i32, i32), bool>) 
     for y in 0..YLEN {
         for x in 0..XLEN {
             let cell: char = {
-                let tb: bool = *(map.get(&(x, y)).unwrap());
-                if tb {
-                    LIVE
-                } else {
-                    DEAD
-                }
+                    let tb: bool = *(map.get(&(x, y)).unwrap());
+                    if tb {
+                        LIVE
+                    } else {
+                        DEAD
+                    }
             };
             screen.mvaddch(y, x, cell);
         }
@@ -68,43 +68,43 @@ pub fn draw_screen(screen: &pancurses::Window, map: &HashMap<(i32, i32), bool>) 
 
 fn is_alive_or_dead(x: i32, y: i32, map: &HashMap<(i32, i32), bool>) -> bool {
     let neighbors: Vec<(i32, i32)> = {
-        let compars: Vec<(i32, i32)> = vec![
-            (0, 1),
-            (1, 0),
-            (0, -1),
-            (-1, 0),
-            (1, 1),
-            (-1, -1),
-            (1, -1),
-            (-1, 1),
-        ];
+            let compars: Vec<(i32, i32)> = vec![
+                (0, 1),
+                (1, 0),
+                (0, -1),
+                (-1, 0),
+                (1, 1),
+                (-1, -1),
+                (1, -1),
+                (-1, 1),
+            ];
 
-        let mut vector: Vec<(i32, i32)> = Vec::new();
+            let mut vector: Vec<(i32, i32)> = Vec::new();
 
-        for (t_x, t_y) in compars {
-            let mut j_x = x + t_x;
-            let mut j_y = y + t_y;
+            for (t_x, t_y) in compars {
+                let mut j_x = x + t_x;
+                let mut j_y = y + t_y;
 
-            if j_x < 0 {
-                j_x = XLEN-1;
+                if j_x < 0 {
+                    j_x = XLEN-1;
+                }
+                if j_y < 0 {
+                    j_y = YLEN-1;
+                }
+                if j_x >= XLEN {
+                    j_x = 0;
+                }
+                if j_y >= YLEN {
+                    j_y = 0;
+                }
+
+                vector.push((j_x, j_y));
             }
-            if j_y < 0 {
-                j_y = YLEN-1;
-            }
-            if j_x >= XLEN {
-                j_x = 0;
-            }
-            if j_y >= YLEN {
-                j_y = 0;
-            }
 
-            vector.push((j_x, j_y));
-        }
-
-        vector
+            vector
     };
 
-    let mut counter: u8 = 0;
+    let mut counter: i32 = 0;
 
     for coordinate in &neighbors {
         match map.get(&coordinate) {
