@@ -19,8 +19,8 @@ use pancurses;
 use rand::{Rng, thread_rng};
 
 const LIVE: char = '#';
-const DEAD: char = '.';
-const XLEN: i32 = 100;
+const DEAD: char = ' ';
+const XLEN: i32 = 200;
 const YLEN: i32 = 50;
 
 pub fn update_map(map: HashMap<(i32, i32), bool>) -> HashMap<(i32, i32), bool> {
