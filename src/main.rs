@@ -33,10 +33,14 @@ fn main() {
     pancurses::curs_set(0);
     screen.attron(pancurses::COLOR_PAIR(1));
 
+    let mut count: u64 = 0;
+
     loop {
         // TODO: Allow user to exit with 'q', and do other keyboard stuff.
         internals::draw_screen(&screen, &hash_map);
+        screen.addstr(&format!("\n\n{}", count));
         hash_map = internals::update_map(hash_map);
+        count += 1;
         sleep(Duration::new(0, 5));
     }
 
