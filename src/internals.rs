@@ -16,7 +16,6 @@
 use std::collections::HashMap;
 
 use pancurses;
-use rand::{Rng, thread_rng};
 use rand;
 
 const LIVE: char = '#';
@@ -40,13 +39,11 @@ pub fn update_map(screen: &pancurses::Window, map: HashMap<(i32, i32), bool>) ->
 
 pub fn create_map(screen: &pancurses::Window) -> HashMap<(i32, i32), bool> {
     let mut map: HashMap<(i32, i32), bool> = HashMap::new();
-    let mut rng = thread_rng();
     let (ylen, xlen) = screen.get_max_yx();
 
     for x in 0..xlen {
         for y in 0..ylen {
-            let random_integer: u64 = rand::random();
-            map.insert((x, y), random_integer % 7 == 0);
+            map.insert((x, y), rand::random::<u64>() % 7 == 0);
         }
     }
 
