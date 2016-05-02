@@ -50,6 +50,8 @@ pub fn create_map() -> HashMap<(i32, i32), bool> {
 }
 
 pub fn draw_screen(screen: &pancurses::Window, map: &HashMap<(i32, i32), bool>) {
+    let mut count: u64 = 0;
+
     for y in 0..YLEN {
         for x in 0..XLEN {
             let cell: char = {
